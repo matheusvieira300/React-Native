@@ -1,6 +1,8 @@
 import React from 'react';// para importar o react
 import { StyleSheet, Image, Dimensions, Text, View } from 'react-native';//componente exportado
 
+import Texto from '../componentes/Texto'; //importanto o texto Montserrat
+
 import topo from '../../assets/topo.png';
 import logo from '../../assets/logo.png';
 
@@ -11,26 +13,26 @@ export default function Cesta(){ //export pois está exportando um componente
     {/*<> fragmento serve para agrupar*/}
     {/*//para adicionar imagem no react native, source o caminho 8*/}
     <Image source={topo} style={estilos.topo} /> 
-    <Text style={estilos.titulo}>Detalhe da cesta </Text>
+    <Texto style={estilos.titulo}>Detalhe da cesta </Texto>
 
 {/*chamando o padding*/}
     <View style={estilos.cesta}>
 
 {/*chamando o estilo da const*/}
-        <Text style={estilos.nome}>Cesta de Verduras</Text> 
+        <Texto style={estilos.nome}>Cesta de Verduras</Texto> 
 
         {/* para não atrapalhar nos outros componentes está sendo criada outra View */}
         <View style={estilos.fazenda}>
             {/*chamando o logo*/}
             <Image source={logo} style={estilos.imagemFazenda}/> 
+        <Texto style={estilos.nomeFazenda}>Jenny Jack Farm</Texto>
         </View>
-        <Text style={estilos.nomeFazenda}>Jenny Jack Farm</Text>
-        <Text style={estilos.descricao}>
+        <Texto style={estilos.descricao}>
             Uma cesta com Produtos selecionados 
             cuidadosamente da fazenda direto 
             para sua cozinha
-        </Text>
-        <Text style={estilos.preco}>R$ 40,00</Text>
+        </Texto>
+        <Texto style={estilos.preco}>R$ 40,00</Texto>
     </View>
     </>
 }
@@ -58,7 +60,7 @@ const estilos = StyleSheet.create({ // estilo da imagem, stylesheet é utilizado
         color: "#464646",
         fontSize: 26,
         lineHeight:42, //tamanho da linha
-        fontFamily: "MontserratBold",
+        fontWeight: 'bold',
     },
     fazenda:{
         flexDirection: "row",//serve para mudar a ordenação das coisas na tela, organizar a tela, por padraão o flex direction fica como coluna
@@ -73,7 +75,6 @@ const estilos = StyleSheet.create({ // estilo da imagem, stylesheet é utilizado
         fontSize: 16,
         lineHeight: 26,
         marginLeft: 12, //margin a esquerda
-        fontFamily: "MontserratRegular",
     },
     descricao:{
         color: "#A3A3A3",

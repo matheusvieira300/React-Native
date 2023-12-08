@@ -21,7 +21,7 @@ da lista que não se repete */}
 
 const estilos = StyleSheet.create({
     titulo: {
-        color: "#44646",
+        color: "#464646",
         fontWeight: "bold",
         marginTop: 32,
         marginBottom: 8,

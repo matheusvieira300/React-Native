@@ -23,24 +23,28 @@ const [fonteCarregada] = useFonts({
 // } Deprecated
 
 useEffect(() => {
-  async function prepare() {//função assincrona utilizando SplashScreen
-    try {
-      await SplashScreen.preventAutoHideAsync();
-    } catch (e) {
-      console.warn(e);
+  const hideSplash = async () => {
+    if (!fonteCarregada) {
+      return;
     }
-  }
-  prepare();
-}, []);
 
-const onLayoutRootView = useCallback(async () => {
-  if (fonteCarregada) {
     await SplashScreen.hideAsync();
-  }
+  };
+
+  hideSplash();
 }, [fonteCarregada]);
 
 if (!fonteCarregada) {
-  return null;
+  // Retorna algo enquanto as fontes estão sendo carregadas
+  return (
+    <SafeAreaView>
+      <StatusBar />
+      {/* Pode exibir um spinner ou mensagem de carregamento */}
+      <View>
+        {/* Conteúdo de carregamento */}
+      </View>
+    </SafeAreaView>
+  );
 }
 
   return (

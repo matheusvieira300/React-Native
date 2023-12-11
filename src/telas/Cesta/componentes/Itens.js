@@ -1,20 +1,33 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, FlatList } from "react-native";
 
 import Texto from "../../../componentes/Texto";
 
-export default function Itens({titulo, lista}){
-   return <>
-        <Texto style={estilos.titulo}>{ titulo }</Texto>
+export default function Itens({ titulo, lista }) {
+
+    //item para pegar os pârametros
+    const renderItem = ({item: {nome, imagem}}) => <View key={nome} style={estilos.item}>
+        <Image source={imagem} style={estilos.imagem} />
+        <Texto style={estilos.nome}>{nome}</Texto>
+    </View>
+
+    return <>
+        <Texto style={estilos.titulo}>{titulo}</Texto>
+        {/* Flatlist é recomendando por ser mais otimizado*/}
+        <FlatList
+            data={lista}
+            renderItem={ renderItem }
+            keyExtractor={({ nome }) => nome }
+            />
         {/* map para percorrer uma lista de array e assim pode ser alterado para */}
-        {/* retornar uma nova lista */}
-        {lista.map(({nome, imagem}) => {
-{/* o atributo key serve para dizer qual vai ser o atributo único/id 
+        {/* retornar uma nova lista, uma coisa ruim é que o map não é tão otimizado */}
+        {lista.map(({ nome, imagem }) => {
+            {/* o atributo key serve para dizer qual vai ser o atributo único/id 
 da lista que não se repete */}
-           return <View key={nome} style={estilos.item}>
-            <Image source={imagem} style={estilos.imagem}/>
-            <Texto style={estilos.nome}>{ nome }</Texto>
-           </View>
+            return <View key={nome} style={estilos.item}>
+                <Image source={imagem} style={estilos.imagem} />
+                <Texto style={estilos.nome}>{nome}</Texto>
+            </View>
         })}
     </>
 }
@@ -28,21 +41,21 @@ const estilos = StyleSheet.create({
         fontSize: 20,
         lineHeight: 32
     },
-    item:{
+    item: {
         flexDirection: "row", //para ficar um do lado do outro
         borderBottomWidth: 1,//tem que defininir cado elemento da borda, nesse caso a largura
         borderBottomColor: "#ECECEC", //cor da borda 
         paddingVertical: 16, //para dar espaçamento de cima pra baixo
         alignItems: "center", //alinhar items no centro
     },
-    imagem:{
+    imagem: {
         width: 46,//largura da imagem
         height: 46 //altura
     },
-    nome:{
+    nome: {
         fontSize: 16,
         lineHeight: 26,
         marginLeft: 11,
-        color:"#464646",
+        color: "#464646",
     },
 }); 

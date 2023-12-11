@@ -48,7 +48,8 @@ if (!fonteCarregada) {
 }
 
   return (
-    <SafeAreaView>
+    //flex 1 para definir que o flex é sempre o tamanho da tela inteira do celular
+    <SafeAreaView style={{flex: 1}}>
        {/* Safe Area View style propriedade e auto valor da propriedade */}
       <StatusBar />
       {/*...mock é o mesmo que chamar todos os paramtros do const dentro do mock*/}
